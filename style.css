@@ -662,54 +662,132 @@ footer {
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        padding: 10px;
+    }
+    
     .title {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
+        margin: 20px 0;
+        text-shadow: 3px 3px 6px rgba(255, 182, 193, 0.6);
     }
     
     .lottery-box {
-        min-width: 300px;
-        padding: 30px 20px; /* 元のサイズに戻す */
+        min-width: 320px;
+        max-width: 90vw;
+        padding: 25px 15px;
+        margin: 20px auto;
     }
     
     .decoration-character {
-        width: 110px;
-        height: 140px; /* モバイルでもキャラクター画像のみを大きく */
+        width: 80px;
+        height: 100px;
+        margin: 0 10px;
+    }
+    
+    .garapon-structure {
+        margin-top: 20px;
+        transform: scale(0.8);
     }
     
     .garapon-handle {
-        width: 15px;
-        height: 75px;
+        width: 12px;
+        height: 60px;
     }
     
     .garapon-handle::before {
-        width: 25px;
-        height: 12px;
-        left: -5px;
-        top: -6px;
+        width: 20px;
+        height: 10px;
+        left: -4px;
+        top: -5px;
     }
     
     .garapon-base {
-        width: 150px;
-        height: 30px; /* 45px から 30px に縮小 */
+        width: 120px;
+        height: 25px;
     }
     
     .lottery-wheel {
-        width: 200px; /* モバイルでは200px */
-        height: 200px;
-        border: 6px solid var(--white);
-        box-shadow: 0 12px 24px var(--soft-shadow);
+        width: 160px;
+        height: 160px;
+        border: 4px solid var(--white);
+        box-shadow: 0 8px 16px var(--soft-shadow);
     }
     
     .wheel-inner {
-        width: 96px;
-        height: 96px;
-        box-shadow: inset 0 2px 6px var(--soft-shadow);
+        width: 76px;
+        height: 76px;
+        box-shadow: inset 0 2px 4px var(--soft-shadow);
     }
     
     .center-sakura {
-        width: 48px;
-        height: 48px;
+        width: 38px;
+        height: 38px;
         filter: drop-shadow(0 2px 4px var(--soft-shadow));
+    }
+    
+    .stick-image {
+        width: 60px;
+        height: auto;
+        transform: translateY(-8px);
+    }
+    
+    .lottery-button {
+        padding: 15px 35px;
+        font-size: 1.4rem;
+        margin: 25px 0;
+        border-radius: 25px;
+    }
+    
+    .result-card {
+        padding: 20px;
+        border-radius: 15px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    .result-card h3 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .result-card p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .retry-button {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        margin-top: 20px;
+    }
+    
+    /* モバイル用のアニメーション調整 */
+    .gara-sound {
+        font-size: 1.8rem !important;
+        top: 10px !important;
+    }
+    
+    .pon-sound {
+        font-size: 2.2rem !important;
+    }
+    
+    .shake-text {
+        font-size: 1.6rem !important;
+    }
+    
+    .countdown-text {
+        font-size: 2.5rem !important;
+    }
+    
+    .excitement-sound {
+        font-size: 1.4rem !important;
+    }
+    
+    .result-indicator {
+        font-size: 1.4rem !important;
+        top: -40px !important;
     }
     
     .probability-list {

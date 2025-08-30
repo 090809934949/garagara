@@ -9,6 +9,9 @@ class SakuraLottery {
         this.retryButton = document.getElementById('retryButton');
         this.cherryPetals = document.getElementById('cherryPetals');
         
+        // モバイル音声対応フラグ
+        this.audioEnabled = false;
+        
         // くじの種類と確率設定
         this.fortunes = [
             { name: 'A賞', probability: 30, icon: '814.png', color: '#FFB347', message: 'おめでとうございます！A賞当選です♪' },
@@ -22,6 +25,9 @@ class SakuraLottery {
     }
     
     init() {
+        // 初回クリックで音声を有効化（モバイル対応）
+        this.enableAudioOnFirstInteraction();
+        
         // イベントリスナーの設定
         this.lotteryButton.addEventListener('click', () => this.spinLottery());
         this.retryButton.addEventListener('click', () => this.resetLottery());
@@ -580,6 +586,11 @@ class SakuraLottery {
     
     // ガラガラBGMを開始（ルーレット回転中のみ）
     startGaraponBGM(result) {
+        if (!this.audioEnabled) {
+            console.log('BGM無効化されています（モバイル制限）');
+            return;
+        }
+        
         // 既存のBGMがあれば停止
         this.stopGaraponBGM();
         
@@ -588,10 +599,13 @@ class SakuraLottery {
         audio.src = '0831(1).MP3';
         audio.loop = true; // 連続再生
         audio.volume = 0.4; // 控えめな音量
+        audio.preload = 'auto';
         
         document.body.appendChild(audio);
         
-        audio.play().catch(error => {
+        audio.play().then(() => {
+            console.log('BGM再生開始');
+        }).catch(error => {
             console.log('BGMの自動再生に失敗しました:', error);
         });
         
@@ -630,15 +644,50 @@ class SakuraLottery {
         }
     }
     
+    // モバイル対応: 初回インタラクションで音声を有効化
+    enableAudioOnFirstInteraction() {
+        const enableAudio = () => {
+            if (!this.audioEnabled) {
+                // ダミー音声を再生して音声コンテキストを初期化
+                const silentAudio = document.createElement('audio');
+                silentAudio.src = 'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+PywokhCCqA0vLZizkJGGq+8OA=';
+                silentAudio.volume = 0.01;
+                silentAudio.play().then(() => {
+                    this.audioEnabled = true;
+                    console.log('モバイル音声有効化完了');
+                }).catch(() => {
+                    console.log('音声有効化に失敗（モバイル制限）');
+                });
+                
+                // イベントリスナーを削除
+                document.removeEventListener('touchstart', enableAudio);
+                document.removeEventListener('click', enableAudio);
+            }
+        };
+        
+        // タッチとクリックの両方に対応
+        document.addEventListener('touchstart', enableAudio, { once: true });
+        document.addEventListener('click', enableAudio, { once: true });
+    }
+
     // 賞の効果音を再生
     createPrizeAudio(filename, volume) {
+        if (!this.audioEnabled) {
+            console.log('音声が無効化されています（モバイル制限）');
+            return;
+        }
+        
         const audio = document.createElement('audio');
         audio.src = filename;
         audio.volume = volume;
+        audio.preload = 'auto';
         
         document.body.appendChild(audio);
         
-        audio.play().catch(error => {
+        // モバイルでの再生成功率を高める設定
+        audio.play().then(() => {
+            console.log(`${filename} 再生成功`);
+        }).catch(error => {
             console.log(`${filename}の再生に失敗しました:`, error);
         });
         
