@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>さくらのラッキー宝くじ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cherry-petals" id="cherryPetals"></div>
+    
+    <div class="container">
+        <header>
+            <div class="title-decoration">
+                <img src="814.png" class="title-sakura left" alt="桜">
+                <h1 class="title">さくらのラッキー宝くじ</h1>
+                <img src="814.png" class="title-sakura right" alt="桜">
+            </div>
+            <p class="subtitle">運命の花びらがあなたの運を運んでくれます</p>
+        </header>
+
+        <main>
+            <div class="lottery-box">
+                <div class="cherry-decoration">
+                    <img src="1.png" class="decoration-character" alt="キャラクター">
+                </div>
+                <div class="lottery-content">
+                    <div class="lottery-wheel" id="lotteryWheel">
+                        <div class="wheel-inner">
+                            <div class="cherry-center">
+                                <img src="814.png" class="center-sakura" alt="桜">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="garapon-structure">
+                        <div class="garapon-handle"></div>
+                        <div class="garapon-base"></div>
+                    </div>
+                    
+                    <button class="lottery-button" id="lotteryButton">
+                        <span class="button-text">ガチャる！</span>
+                        <div class="button-petals">
+                            <img src="151.png" class="petal-img petal1" alt="桜の花びら">
+                            <img src="151.png" class="petal-img petal2" alt="桜の花びら">
+                            <img src="151.png" class="petal-img petal3" alt="桜の花びら">
+                        </div>
+                    </button>
+                </div>
+                <div class="cherry-decoration">
+                    <img src="2.png" class="decoration-character" alt="キャラクター">
+                </div>
+            </div>
+
+            <div class="result-area" id="resultArea" style="display: none;">
+                <div class="result-card">
+                    <div class="result-icon" id="resultIcon">🌸</div>
+                    <h2 class="result-text" id="resultText">結果</h2>
+                    <p class="result-message" id="resultMessage">おめでとうございます！</p>
+                    <button class="retry-button" id="retryButton">もう一度挑戦</button>
+                </div>
+            </div>
+
+
+        </main>
+
+        <footer>
+            <p>© 2024 さくらのラッキー宝くじ <img src="814.png" class="footer-sakura" alt="桜"> 幸運をお祈りします</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
